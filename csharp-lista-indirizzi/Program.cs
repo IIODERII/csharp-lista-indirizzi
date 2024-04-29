@@ -15,9 +15,13 @@
                     foreach(string s in data)
                     {
                         if (s.Length == 0)
-                            throw new Exception();
+                            throw new MissingFieldException();
                     }
                    addresses.Add(new Address(data[0], data[1], data[2], data[3], data[4], int.Parse(data[5])));
+                }
+                catch (MissingFieldException e)
+                {
+                    Console.WriteLine("ATTENZIONE!! Sembra che alcuni campi non siano presenti!");
                 }
                 catch (Exception e) {
                     if(data.Length < 5)
@@ -32,6 +36,7 @@
                         Console.WriteLine(e.Message);
                     }
                 }
+                
             }
 
             foreach(Address a in addresses)
